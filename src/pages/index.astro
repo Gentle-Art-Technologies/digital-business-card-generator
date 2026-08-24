@@ -21,7 +21,7 @@ const detailFields = [
       <Logo />
       <div class="save-state" data-save-state><span></span> Draft saved locally</div>
       <div class="app-actions">
-        <a class="app-button app-button-secondary desktop-preview" href="/card" target="_blank"><Icon name="eye" size={18} /> Preview</a>
+        <a class="app-button app-button-secondary desktop-preview" href="/card" target="_blank" data-preview-link><Icon name="eye" size={18} /> Preview</a>
         <button class="app-button app-button-secondary mobile-preview-button" type="button" data-mobile-preview><Icon name="eye" size={18} /> <span>Preview</span></button>
         <button class="app-button app-button-primary" type="button" data-publish><Icon name="share" size={18} /> Save & share</button>
       </div>
@@ -104,7 +104,7 @@ const detailFields = [
   <div class="toast" role="status" aria-live="polite" data-toast>Card saved</div>
 
   <script>
-    import { isAlianzaEmail, isValidWhatsAppNumber, normalizeSocialValue, socialProfileUrl, withFixedBrand, type CardState, type SocialPlatform } from '../config/card';
+    import { cardShareUrl, isAlianzaEmail, isValidWhatsAppNumber, normalizeSocialValue, socialProfileUrl, withFixedBrand, type CardState, type SocialPlatform } from '../config/card';
 
     const storageKey = 'alianza-digital-card';
     const editor = document.querySelector('[data-card-editor]');
@@ -130,6 +130,7 @@ const detailFields = [
       const cover=preview.querySelector('[data-preview-cover]'); if(cover instanceof HTMLElement)cover.style.backgroundImage=state.coverImage?`linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.08)),url(${state.coverImage})`:'';
       const socialLinks: Array<[string, SocialPlatform, string]> = [['[data-social-linkedin]','linkedin',state.linkedin],['[data-social-instagram]','instagram',state.instagram],['[data-social-facebook]','facebook',state.facebook],['[data-social-whatsapp]','whatsapp',state.whatsapp]];
       socialLinks.forEach(([selector,platform,value]) => { const href=socialProfileUrl(platform,value); preview.querySelectorAll(selector).forEach((node)=>{node.setAttribute('href',href||'#');node.toggleAttribute('hidden',!href);}); });
+      syncPublicLinks();
     }
     editor?.querySelectorAll('[data-card-field]').forEach((input)=>{const key=input.getAttribute('data-card-field');if(input instanceof HTMLInputElement&&key){input.value=state[key]||'';input.addEventListener('input',()=>{state[key]=input.value;render();markDirty();});const platform=input.getAttribute('data-social-platform') as SocialPlatform|null;if(platform)input.addEventListener('blur',()=>{const normalized=normalizeSocialValue(platform,input.value);input.value=normalized;state[key]=normalized;render();});}});
     const emailInput=editor?.querySelector<HTMLInputElement>('[data-alianza-email]');
@@ -144,11 +145,30 @@ const detailFields = [
     const customColor=document.querySelector('[data-custom-color]');if(customColor instanceof HTMLInputElement)customColor.value=state.color;
     customColor?.addEventListener('input',(event)=>{if(event.target instanceof HTMLInputElement){state.color=event.target.value;document.querySelectorAll('[data-color]').forEach((item)=>{item.classList.remove('selected');item.setAttribute('aria-pressed','false');});render();markDirty();}});
     document.querySelectorAll('[data-image-upload]').forEach((input)=>input.addEventListener('change',()=>{if(!(input instanceof HTMLInputElement)||!input.files?.[0])return;const kind=input.getAttribute('data-image-upload');const reader=new FileReader();reader.addEventListener('load',()=>{if(typeof reader.result==='string'&&kind){state[`${kind}Image`]=reader.result;render();markDirty();}});reader.readAsDataURL(input.files[0]);}));
-    function encodePayload(payload: CardState){const bytes=new TextEncoder().encode(JSON.stringify(payload));let binary='';bytes.forEach((byte)=>binary+=String.fromCharCode(byte));return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
-    function shareLink(){const shareable=withFixedBrand({...state,profileImage:'',coverImage:''});return `${location.origin}/card?data=${encodePayload(shareable)}`;}
-    function openSheet(){if(!(shareSheet instanceof HTMLElement))return;previousFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;shareSheet.hidden=false;document.body.classList.add('sheet-open');const link=shareLink();const shareUrl=document.querySelector('[data-share-url]');if(shareUrl)shareUrl.textContent=link;const publicCardLink=document.querySelector('[data-public-card-link]');if(publicCardLink instanceof HTMLAnchorElement)publicCardLink.href=link;requestAnimationFrame(()=>shareSheet.querySelector<HTMLElement>('.sheet-close')?.focus());}
+    function collectEditorState() {
+      editor?.querySelectorAll('[data-card-field]').forEach((input) => {
+        const key = input.getAttribute('data-card-field');
+        if (input instanceof HTMLInputElement && key) state[key] = input.value;
+      });
+      const selectedColor = document.querySelector('[data-color].selected')?.getAttribute('data-color');
+      if (selectedColor) state.color = selectedColor;
+      else if (customColor instanceof HTMLInputElement && customColor.value) state.color = customColor.value;
+    }
+    function shareLink() {
+      collectEditorState();
+      return cardShareUrl(location.origin, state);
+    }
+    function syncPublicLinks() {
+      const link = shareLink();
+      document.querySelectorAll('[data-preview-link], [data-public-card-link]').forEach((node) => {
+        if (node instanceof HTMLAnchorElement) node.href = link;
+      });
+      const shareUrl = document.querySelector('[data-share-url]');
+      if (shareUrl) shareUrl.textContent = link;
+    }
+    function openSheet(){if(!(shareSheet instanceof HTMLElement))return;previousFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;shareSheet.hidden=false;document.body.classList.add('sheet-open');syncPublicLinks();requestAnimationFrame(()=>shareSheet.querySelector<HTMLElement>('.sheet-close')?.focus());}
     function closeSheet(){if(shareSheet instanceof HTMLElement)shareSheet.hidden=true;document.body.classList.remove('sheet-open');previousFocus?.focus();}
-    function save(showSheet=false){localStorage.setItem(storageKey,JSON.stringify(state));if(saveState)saveState.innerHTML='<span></span> Draft saved locally';toast?.classList.add('visible');window.setTimeout(()=>toast?.classList.remove('visible'),1800);if(showSheet)openSheet();}
+    function save(showSheet=false){collectEditorState();localStorage.setItem(storageKey,JSON.stringify(state));if(saveState)saveState.innerHTML='<span></span> Draft saved locally';toast?.classList.add('visible');window.setTimeout(()=>toast?.classList.remove('visible'),1800);syncPublicLinks();if(showSheet)openSheet();}
     function saveIfValid(showSheet=true){validateEmail(true);validateWhatsApp(true);if(editor instanceof HTMLFormElement&&editor.reportValidity())save(showSheet);}
     editor?.addEventListener('submit',(event)=>{event.preventDefault();saveIfValid(true);});
     document.querySelector('[data-publish]')?.addEventListener('click',()=>saveIfValid(true));

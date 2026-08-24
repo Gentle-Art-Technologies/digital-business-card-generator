@@ -95,3 +95,25 @@ export function withFixedBrand(value: Partial<CardState> = {}): CardState {
     website: fixedCardBrand.website,
   };
 }
+
+export function encodeCardPayload(payload: CardState): string {
+  const bytes = new TextEncoder().encode(JSON.stringify(payload));
+  let binary = '';
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+export function decodeCardPayload(value: string): CardState {
+  const padded = value.replace(/-/g, '+').replace(/_/g, '/');
+  const base64 = padded + '='.repeat((4 - (padded.length % 4)) % 4);
+  const binary = atob(base64);
+  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+  const parsed: unknown = JSON.parse(new TextDecoder().decode(bytes));
+  if (!parsed || typeof parsed !== 'object') throw new Error('Invalid card payload');
+  return withFixedBrand(parsed as Partial<CardState>);
+}
+
+export function cardShareUrl(origin: string, state: CardState): string {
+  const shareable = withFixedBrand({ ...state, profileImage: '', coverImage: '' });
+  return `${origin}/card/?data=${encodeCardPayload(shareable)}`;
+}
