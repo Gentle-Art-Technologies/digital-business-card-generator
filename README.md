@@ -20,10 +20,6 @@ npm run build
 
 ## Cloudflare Pages
 
-The `alianza-card` Pages project is connected to
-`Gentle-Art-Technologies/digital-business-card-generator`. Commits to `main` build with
-`npm run build` and publish `dist/`.
-
 Wrangler is pinned in the project for Cloudflare-compatible local previews and
 manual recovery deployments:
 
