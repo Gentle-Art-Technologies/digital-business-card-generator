@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-24T18:08:50Z",
+  "title": "Design System: Alianza Digital Card",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Pure Ink",
+        "canonical": "#000000",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"]
+      },
+      "navy": {
+        "role": "primary",
+        "displayName": "Deep Alliance Navy",
+        "canonical": "#30374f",
+        "tonalRamp": ["oklch(15% 0.04 275)", "oklch(27% 0.04 275)", "oklch(39% 0.04 275)", "oklch(51% 0.04 275)", "oklch(63% 0.04 275)", "oklch(75% 0.04 275)", "oklch(87% 0.04 275)", "oklch(95% 0.04 275)"]
+      },
+      "slate": {
+        "role": "primary",
+        "displayName": "Trusted Slate",
+        "canonical": "#53646e",
+        "tonalRamp": ["oklch(15% 0.035 230)", "oklch(27% 0.035 230)", "oklch(39% 0.035 230)", "oklch(51% 0.035 230)", "oklch(63% 0.035 230)", "oklch(75% 0.035 230)", "oklch(87% 0.035 230)", "oklch(95% 0.035 230)"]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Clinical Mist",
+        "canonical": "#eef0f2",
+        "tonalRamp": ["oklch(15% 0.008 230)", "oklch(27% 0.008 230)", "oklch(39% 0.008 230)", "oklch(51% 0.008 230)", "oklch(63% 0.008 230)", "oklch(75% 0.008 230)", "oklch(87% 0.008 230)", "oklch(95% 0.008 230)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Warm Paper",
+        "canonical": "#f8f8f6",
+        "tonalRamp": ["oklch(15% 0.006 95)", "oklch(27% 0.006 95)", "oklch(39% 0.006 95)", "oklch(51% 0.006 95)", "oklch(63% 0.006 95)", "oklch(75% 0.006 95)", "oklch(87% 0.006 95)", "oklch(95% 0.006 95)"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Clear White",
+        "canonical": "#ffffff",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Soft Navy Divider",
+        "canonical": "rgba(48, 55, 79, 0.16)",
+        "tonalRamp": ["oklch(15% 0.02 275)", "oklch(27% 0.02 275)", "oklch(39% 0.02 275)", "oklch(51% 0.02 275)", "oklch(63% 0.02 275)", "oklch(75% 0.02 275)", "oklch(87% 0.02 275)", "oklch(95% 0.02 275)"]
+      },
+      "success": {
+        "role": "secondary",
+        "displayName": "Live Teal",
+        "canonical": "#3f7d6b",
+        "tonalRamp": ["oklch(15% 0.08 165)", "oklch(27% 0.08 165)", "oklch(39% 0.08 165)", "oklch(51% 0.08 165)", "oklch(63% 0.08 165)", "oklch(75% 0.08 165)", "oklch(87% 0.08 165)", "oklch(95% 0.08 165)"]
+      },
+      "error": {
+        "role": "tertiary",
+        "displayName": "Validation Red",
+        "canonical": "#a74343",
+        "tonalRamp": ["oklch(15% 0.12 25)", "oklch(27% 0.12 25)", "oklch(39% 0.12 25)", "oklch(51% 0.12 25)", "oklch(63% 0.12 25)", "oklch(75% 0.12 25)", "oklch(87% 0.12 25)", "oklch(95% 0.12 25)"]
+      },
+      "accent-cool-gray": {
+        "role": "secondary",
+        "displayName": "Quiet Steel",
+        "canonical": "#7b8790",
+        "tonalRamp": ["oklch(15% 0.025 220)", "oklch(27% 0.025 220)", "oklch(39% 0.025 220)", "oklch(51% 0.025 220)", "oklch(63% 0.025 220)", "oklch(75% 0.025 220)", "oklch(87% 0.025 220)", "oklch(95% 0.025 220)"]
+      },
+      "accent-forest": {
+        "role": "secondary",
+        "displayName": "Health Forest",
+        "canonical": "#315d54",
+        "tonalRamp": ["oklch(15% 0.06 165)", "oklch(27% 0.06 165)", "oklch(39% 0.06 165)", "oklch(51% 0.06 165)", "oklch(63% 0.06 165)", "oklch(75% 0.06 165)", "oklch(87% 0.06 165)", "oklch(95% 0.06 165)"]
+      },
+      "accent-earth": {
+        "role": "tertiary",
+        "displayName": "Grounded Umber",
+        "canonical": "#7b503b",
+        "tonalRamp": ["oklch(15% 0.08 45)", "oklch(27% 0.08 45)", "oklch(39% 0.08 45)", "oklch(51% 0.08 45)", "oklch(63% 0.08 45)", "oklch(75% 0.08 45)", "oklch(87% 0.08 45)", "oklch(95% 0.08 45)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Builder-page statements only." },
+      "headline": { "displayName": "Headline", "purpose": "The professional name in the public card." },
+      "title": { "displayName": "Title", "purpose": "Section and modal headings." },
+      "body": { "displayName": "Body", "purpose": "Default interface and descriptive copy." },
+      "label": { "displayName": "Label", "purpose": "Uppercase progress, field, and preview wayfinding." }
+    },
+    "shadows": [
+      { "name": "device-lift", "value": "0 26px 60px rgba(48, 55, 79, 0.24)", "purpose": "Physical separation for the live phone preview." },
+      { "name": "public-card-lift", "value": "0 24px 70px rgba(48, 55, 79, 0.16)", "purpose": "Quiet separation for the shared card." },
+      { "name": "dialog-lift", "value": "0 30px 90px rgba(0, 0, 0, 0.25)", "purpose": "Modal priority above a dimmed workspace." },
+      { "name": "badge-lift", "value": "0 5px 18px rgba(0, 0, 0, 0.13)", "purpose": "Small separation for the company badge over the cover." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.2, 0.75, 0.25, 1)", "purpose": "Confident easing for short control movement." },
+      { "name": "state-fast", "value": "180ms", "purpose": "Default duration for hover, focus, toast, and preview state changes." },
+      { "name": "reduced-motion-collapse", "value": "0.01ms", "purpose": "Collapses animation and transition duration when reduced motion is requested." }
+    ],
+    "breakpoints": [
+      { "name": "compact", "value": "600px" },
+      { "name": "single-column", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "App Header",
+      "kind": "nav",
+      "refersTo": "app-header",
+      "description": "Sticky brand, local-save status, and preview/share actions for the builder.",
+      "html": "<header class=\"ds-app-header\"><a class=\"ds-brand\" href=\"#\" aria-label=\"Alianza home\"><svg viewBox=\"0 0 44 44\" aria-hidden=\"true\"><path d=\"M22 3 39 13v18L22 41 5 31V13Zm0 8-10 6v10l10 6 10-6V17Z\" fill=\"currentColor\"/><circle cx=\"22\" cy=\"22\" r=\"5\" fill=\"currentColor\"/></svg><span>Alianza</span></a><span class=\"ds-save-state\"><i></i>Draft saved locally</span><button class=\"ds-header-action\" type=\"button\">Save &amp; share</button></header>",
+      "css": ".ds-app-header{height:76px;padding:0 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;border-bottom:1px solid var(--line,rgba(48,55,79,.16));background:rgba(248,248,246,.97);color:var(--navy,#30374f);font-family:\"DM Sans\",sans-serif}.ds-brand{width:max-content;display:inline-flex;align-items:center;gap:10px;color:var(--ink,#000);font-size:21px;font-weight:700;letter-spacing:-.03em;text-decoration:none}.ds-brand svg{width:30px;height:30px}.ds-save-state{display:flex;align-items:center;gap:8px;color:var(--slate,#53646e);font-size:12px;font-weight:600}.ds-save-state i{width:7px;height:7px;border-radius:50%;background:var(--success,#3f7d6b);box-shadow:0 0 0 3px rgba(63,125,107,.13)}.ds-header-action{min-height:44px;padding:0 18px;justify-self:end;border:1px solid transparent;border-radius:8px;background:var(--ink,#000);color:var(--white,#fff);font:700 13px \"DM Sans\",sans-serif;cursor:pointer;transition:transform 180ms cubic-bezier(.2,.75,.25,1),background 180ms}.ds-header-action:hover{background:var(--navy,#30374f);transform:translateY(-1px)}.ds-header-action:focus-visible{outline:3px solid var(--navy,#30374f);outline-offset:3px}"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The high-priority save, share, and continuation action.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Save &amp; share</button>",
+      "css": ".ds-btn-primary{min-height:44px;padding:0 18px;border:1px solid transparent;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--ink,#000);color:var(--white,#fff);font:700 13px \"DM Sans\",sans-serif;cursor:pointer;transition:transform 180ms cubic-bezier(.2,.75,.25,1),background 180ms}.ds-btn-primary:hover{background:var(--navy,#30374f);transform:translateY(-1px)}.ds-btn-primary:active{transform:none}.ds-btn-primary:focus-visible{outline:3px solid var(--navy,#30374f);outline-offset:3px}.ds-btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A quiet preview or utility action beside the primary action.",
+      "html": "<button class=\"ds-btn-secondary\" type=\"button\">Preview</button>",
+      "css": ".ds-btn-secondary{min-height:44px;padding:0 18px;border:1px solid var(--line,rgba(48,55,79,.16));border-radius:8px;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--white,#fff);color:var(--navy,#30374f);font:700 13px \"DM Sans\",sans-serif;cursor:pointer;transition:transform 180ms cubic-bezier(.2,.75,.25,1),border-color 180ms}.ds-btn-secondary:hover{border-color:var(--navy,#30374f);transform:translateY(-1px)}.ds-btn-secondary:active{transform:none}.ds-btn-secondary:focus-visible{outline:3px solid var(--navy,#30374f);outline-offset:3px}.ds-btn-secondary:disabled{opacity:.5;cursor:not-allowed;transform:none}"
+    },
+    {
+      "name": "Editor Section",
+      "kind": "card",
+      "refersTo": "editor-section",
+      "description": "The flat, bordered container that groups one editing decision.",
+      "html": "<section class=\"ds-editor-section\"><div class=\"ds-section-mark\">01</div><div><h3>Card visuals</h3><p>Add recognizable details and choose an accent.</p></div></section>",
+      "css": ".ds-editor-section{padding:30px;border:1px solid var(--line,rgba(48,55,79,.16));border-radius:14px;display:flex;align-items:flex-start;gap:13px;background:var(--white,#fff);color:var(--navy,#30374f);font-family:\"DM Sans\",sans-serif}.ds-section-mark{width:39px;height:39px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;background:var(--mist,#eef0f2);font-size:11px;font-weight:700}.ds-editor-section h3{margin:0 0 4px;color:var(--ink,#000);font-size:19px;letter-spacing:-.02em}.ds-editor-section p{margin:0;color:var(--slate,#53646e);font-size:12px}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "text-field",
+      "description": "Icon-led identity field with a compact uppercase label.",
+      "html": "<label class=\"ds-field\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/><path d=\"M5.5 20c.4-4.2 2.6-6.3 6.5-6.3s6.1 2.1 6.5 6.3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/></svg><span><b>NAME <i>*</i></b><input value=\"Maya Torres\" aria-label=\"Name\"/></span></label>",
+      "css": ".ds-field{min-height:66px;padding:0 14px;display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;gap:9px;border:1px solid var(--line,rgba(48,55,79,.16));border-radius:9px;background:var(--paper,#f8f8f6);color:var(--slate,#53646e);font-family:\"DM Sans\",sans-serif;transition:border-color 180ms,box-shadow 180ms}.ds-field:focus-within{border-color:var(--navy,#30374f);box-shadow:0 0 0 3px rgba(48,55,79,.08)}.ds-field svg{width:18px}.ds-field span{display:grid;gap:2px}.ds-field b{font-size:9px;letter-spacing:.05em}.ds-field i{color:var(--error,#a74343);font-style:normal}.ds-field input{min-width:0;width:100%;padding:0;border:0;outline:0;background:transparent;color:var(--ink,#000);font:400 13px \"DM Sans\",sans-serif}"
+    },
+    {
+      "name": "Upload Tile",
+      "kind": "input",
+      "refersTo": "upload-tile",
+      "description": "A large, legible image-upload target for profile, cover, or logo assets.",
+      "html": "<label class=\"ds-upload-tile\"><input type=\"file\" accept=\"image/*\"/><span><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 5h16v14H4zM6.5 16l4-4 3 3 2-2 2.5 3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/><circle cx=\"15.5\" cy=\"9\" r=\"1.5\" fill=\"currentColor\"/></svg></span><strong>Cover image</strong><small>Landscape image</small></label>",
+      "css": ".ds-upload-tile{min-height:138px;padding:20px 12px;border:1px dashed rgba(48,55,79,.28);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px;background:var(--white,#fff);color:var(--navy,#30374f);text-align:center;font-family:\"DM Sans\",sans-serif;cursor:pointer;transition:border-color 180ms,background 180ms,box-shadow 180ms}.ds-upload-tile:hover{border-color:var(--navy,#30374f);background:var(--mist,#eef0f2)}.ds-upload-tile:focus-within{border-color:var(--navy,#30374f);box-shadow:0 0 0 3px rgba(48,55,79,.1)}.ds-upload-tile input{position:absolute;width:1px;height:1px;opacity:0}.ds-upload-tile span{width:39px;height:39px;border-radius:50%;display:grid;place-items:center;background:var(--mist,#eef0f2)}.ds-upload-tile svg{width:22px}.ds-upload-tile strong{color:var(--ink,#000);font-size:12px}.ds-upload-tile small{color:var(--slate,#53646e);font-size:10px}"
+    },
+    {
+      "name": "Quick Action",
+      "kind": "button",
+      "refersTo": "quick-action",
+      "description": "A touch-safe circular contact action inside the digital card.",
+      "html": "<button class=\"ds-quick-action\" type=\"button\" aria-label=\"Send email\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3.5 6.5h17v11h-17zM4 7l8 6 8-6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"/></svg></button>",
+      "css": ".ds-quick-action{width:44px;height:44px;padding:0;border:0;border-radius:50%;display:grid;place-items:center;background:var(--mist,#eef0f2);color:var(--navy,#30374f);cursor:pointer;transition:background 180ms,color 180ms}.ds-quick-action svg{width:19px}.ds-quick-action:hover,.ds-quick-action:active{background:var(--card-accent,var(--slate,#53646e));color:var(--white,#fff)}.ds-quick-action:focus-visible{outline:3px solid var(--navy,#30374f);outline-offset:3px}"
+    },
+    {
+      "name": "Accent Swatch",
+      "kind": "chip",
+      "refersTo": "accent-swatch",
+      "description": "A selectable card-accent control with a non-color selection ring.",
+      "html": "<button class=\"ds-accent-swatch ds-selected\" type=\"button\" aria-label=\"Use Trusted Slate\" aria-pressed=\"true\"><span></span></button>",
+      "css": ".ds-accent-swatch{width:44px;height:44px;padding:3px;border:2px solid transparent;border-radius:50%;background:transparent;cursor:pointer}.ds-accent-swatch span{display:block;width:100%;height:100%;border-radius:50%;background:var(--slate,#53646e)}.ds-accent-swatch:hover{background:var(--mist,#eef0f2)}.ds-accent-swatch.ds-selected{border-color:var(--ink,#000)}.ds-accent-swatch:focus-visible{outline:3px solid var(--navy,#30374f);outline-offset:3px}"
+    },
+    {
+      "name": "Digital Card Identity",
+      "kind": "custom",
+      "refersTo": "digital-card",
+      "description": "The signature accent cover, overlapping avatar, and professional identity block.",
+      "html": "<article class=\"ds-digital-card\"><div class=\"ds-card-cover\"><span>A</span><b>A</b></div><div class=\"ds-card-avatar\">MT</div><div class=\"ds-card-body\"><small>DEMO PROFILE · ALIANZA DIGITAL CARD</small><h3>Maya Torres</h3><p>Community Partnerships</p><p>Alianza Sócios de Salud</p><em>Building healthier partnerships across communities.</em></div></article>",
+      "css": ".ds-digital-card{width:min(100%,480px);position:relative;overflow:hidden;border-radius:16px;background:var(--white,#fff);color:var(--navy,#30374f);box-shadow:0 24px 70px rgba(48,55,79,.16);font-family:\"DM Sans\",sans-serif}.ds-card-cover{height:245px;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--card-accent,var(--slate,#53646e));color:rgba(255,255,255,.13);font-size:150px;font-weight:700}.ds-card-cover b{width:64px;height:54px;position:absolute;right:18px;bottom:13px;border-radius:8px;display:grid;place-items:center;background:var(--white,#fff);color:var(--card-accent,var(--slate,#53646e));font-size:24px;box-shadow:0 5px 18px rgba(0,0,0,.13)}.ds-card-avatar{width:94px;height:94px;margin:-47px 0 0 30px;position:relative;border:4px solid var(--white,#fff);border-radius:50%;display:grid;place-items:center;background:var(--navy,#30374f);color:var(--white,#fff);font-weight:700}.ds-card-body{padding:20px 30px 32px}.ds-card-body small{color:var(--slate,#53646e);font-size:7px;font-weight:700;letter-spacing:.13em}.ds-card-body h3{margin:8px 0 3px;color:var(--ink,#000);font-size:31px;line-height:1.05;letter-spacing:-.035em}.ds-card-body p{margin:2px 0;font-size:14px}.ds-card-body em{display:block;margin-top:9px;color:var(--slate,#53646e);font-size:13px;font-style:normal;line-height:1.4}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Calm Digital Handshake",
+    "overview": "The Alianza Digital Card turns a trusted professional introduction into a quiet, tangible credential. Its visual world is clean, functional, and implementation-focused: warm-white work surfaces, cool clinical grays, deep ink actions, and a restrained personal accent make the interface feel dependable before it feels expressive.\n\nThe builder separates making from seeing. A stable live card occupies one side on wide screens while a spacious, linear editor occupies the other; on small screens the editor leads and the preview becomes an explicit mode. Brand personality comes through disciplined typography, useful circular details, and a phone-like card frame rather than decorative spectacle.",
+    "keyCharacteristics": [
+      "Calm, professional, and immediately legible.",
+      "Flat by default, with depth reserved for objects that genuinely float.",
+      "Dense in information but generous around decisions and touch targets.",
+      "Personal accent color is contained inside the digital card experience.",
+      "Concise, confident interface language with honest prototype labeling."
+    ],
+    "rules": [
+      { "name": "The Quiet Base Rule", "body": "Pale neutrals must carry the workspace; strong color appears only where it communicates action, status, or card identity.", "section": "colors" },
+      { "name": "The Accent Is Personal Rule", "body": "The selected accent may shape the digital card's cover, icons, and hover details, but it must not recolor the surrounding builder chrome.", "section": "colors" },
+      { "name": "The One-Family Rule", "body": "DM Sans must carry every interface role; hierarchy comes from size, weight, and tracking rather than a second typeface.", "section": "typography" },
+      { "name": "The Split Focus Rule", "body": "On wide screens, editing and previewing remain visible together; on narrow screens, they become explicit modes so neither is squeezed into an unusable column.", "section": "layout" },
+      { "name": "The Earned Lift Rule", "body": "Resting workspace surfaces must remain shadowless; shadow is reserved for a physical or modal layer that sits above another surface.", "section": "elevation" },
+      { "name": "The Radius Hierarchy Rule", "body": "Use small curves for controls, medium curves for content containers, circles for compact identity and actions, and the largest radius only for the phone silhouette.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do use the semantic color, type, spacing, and radius roles captured in the frontmatter.",
+      "Do keep primary actions obvious, dark, and at least 44px high.",
+      "Do preserve visible keyboard focus, touch-safe targets, and reduced-motion behavior.",
+      "Do label all demo identities and prototype persistence behavior honestly.",
+      "Do let long card content scroll or truncate within its existing bounds."
+    ],
+    "donts": [
+      "Don't spread the personal card accent across the neutral builder workspace.",
+      "Don't add shadows to resting form sections or fields.",
+      "Don't introduce a second font family or one-off display treatment.",
+      "Don't hide focus indicators or communicate selection and error with color alone.",
+      "Don't invent testimonials, metrics, customer logos, or production persistence claims."
+    ]
+  }
+}

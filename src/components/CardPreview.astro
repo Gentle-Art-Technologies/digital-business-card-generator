@@ -1,0 +1,52 @@
+---
+import Icon from './Icon.astro';
+import nestLogo from '../assets/brand/alianza-nest.svg';
+
+interface Props { publicView?: boolean; }
+const { publicView = false } = Astro.props;
+---
+
+<div class:list={["card-device", { "public-card-device": publicView }]} data-card-preview>
+  {!publicView && <div class="device-status"><span>9:41</span><i></i><b></b></div>}
+  <article class="digital-card">
+    <div class="card-cover" data-preview-cover>
+      <div class="cover-monogram">A</div>
+      <div class="company-badge" aria-label="Alianza Sócios de Salud">
+        <img
+          class="company-badge-mark"
+          src={nestLogo.src}
+          width={nestLogo.width}
+          height={nestLogo.height}
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="card-avatar" data-preview-avatar><span data-preview-initials>MT</span><img src="/favicon.svg" alt="" hidden /></div>
+    <div class="card-body">
+      <p class="demo-label">DEMO PROFILE · ALIANZA DIGITAL CARD</p>
+      <h2 data-preview-name>Maya Torres</h2>
+      <p class="card-role" data-preview-title>Community Partnerships</p>
+      <p class="card-company" data-preview-company>Alianza Sócios de Salud</p>
+      <p class="card-headline" data-preview-headline>Building healthier partnerships across communities.</p>
+      <div class="quick-actions" aria-label="Quick contact actions">
+        <a href="mailto:maya@alianza.health" data-action-email aria-label="Send email"><Icon name="mail" size={19} /></a>
+        <a href="tel:+17875550146" data-action-phone aria-label="Call"><Icon name="phone" size={19} /></a>
+        <a href="https://alianza.health" data-action-site aria-label="Open website"><Icon name="globe" size={19} /></a>
+        <button type="button" data-share-card aria-label="Share card"><Icon name="share" size={19} /></button>
+      </div>
+      <div class="card-details">
+        <a href="mailto:maya@alianza.health" data-detail-email><span><Icon name="mail" size={18} /></span><p><strong data-preview-email>maya@alianza.health</strong><small>Email</small></p></a>
+        <a href="tel:+17875550146" data-detail-phone><span><Icon name="phone" size={18} /></span><p><strong data-preview-phone>+1 (787) 555-0146</strong><small>Mobile</small></p></a>
+        <a href="https://alianza.health" data-detail-site><span><Icon name="globe" size={18} /></span><p><strong data-preview-website>alianza.health</strong><small>Website</small></p></a>
+        <div data-detail-location><span><Icon name="location" size={18} /></span><p><strong data-preview-location>San Juan, Puerto Rico</strong><small>Location</small></p></div>
+      </div>
+      <div class="social-links" aria-label="Social profiles">
+        <a href="#" data-social-linkedin aria-label="LinkedIn"><Icon name="linkedin" size={18} /></a>
+        <a href="#" data-social-instagram aria-label="Instagram"><Icon name="instagram" size={18} /></a>
+        <a href="#" data-social-facebook aria-label="Facebook"><Icon name="facebook" size={18} /></a>
+        <a href="#" data-social-whatsapp aria-label="WhatsApp"><Icon name="whatsapp" size={18} /></a>
+      </div>
+    </div>
+    <button class="add-contact-button" type="button" data-save-card-contact><Icon name="user" size={18} /> Add to contacts</button>
+  </article>
+</div>

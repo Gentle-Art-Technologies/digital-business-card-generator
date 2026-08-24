@@ -1,0 +1,69 @@
+---
+import { ArrowRight } from '@untitledui/icons/ArrowRight';
+import { Briefcase01 } from '@untitledui/icons/Briefcase01';
+import { Building07 } from '@untitledui/icons/Building07';
+import { Calendar } from '@untitledui/icons/Calendar';
+import { Camera01 } from '@untitledui/icons/Camera01';
+import { Check } from '@untitledui/icons/Check';
+import { ChevronDown } from '@untitledui/icons/ChevronDown';
+import { Edit03 } from '@untitledui/icons/Edit03';
+import { Eye } from '@untitledui/icons/Eye';
+import { Globe02 } from '@untitledui/icons/Globe02';
+import { Image01 } from '@untitledui/icons/Image01';
+import { Link01 } from '@untitledui/icons/Link01';
+import { LinkExternal01 } from '@untitledui/icons/LinkExternal01';
+import { Mail01 } from '@untitledui/icons/Mail01';
+import { MarkerPin01 } from '@untitledui/icons/MarkerPin01';
+import { MessageCircle02 } from '@untitledui/icons/MessageCircle02';
+import { Menu01 } from '@untitledui/icons/Menu01';
+import { Palette } from '@untitledui/icons/Palette';
+import { Phone01 } from '@untitledui/icons/Phone01';
+import { Plus } from '@untitledui/icons/Plus';
+import { QrCode01 } from '@untitledui/icons/QrCode01';
+import { Share07 } from '@untitledui/icons/Share07';
+import { Upload01 } from '@untitledui/icons/Upload01';
+import { User01 } from '@untitledui/icons/User01';
+import { UserSquare } from '@untitledui/icons/UserSquare';
+import { Users01 } from '@untitledui/icons/Users01';
+import { Wallet01 } from '@untitledui/icons/Wallet01';
+import { XClose } from '@untitledui/icons/XClose';
+
+const icons = {
+  arrow: ArrowRight,
+  briefcase: Briefcase01,
+  building: Building07,
+  calendar: Calendar,
+  check: Check,
+  chevron: ChevronDown,
+  close: XClose,
+  edit: Edit03,
+  external: LinkExternal01,
+  eye: Eye,
+  facebook: Users01,
+  globe: Globe02,
+  image: Image01,
+  instagram: Camera01,
+  link: Link01,
+  linkedin: UserSquare,
+  location: MarkerPin01,
+  mail: Mail01,
+  menu: Menu01,
+  palette: Palette,
+  phone: Phone01,
+  plus: Plus,
+  qr: QrCode01,
+  share: Share07,
+  upload: Upload01,
+  user: User01,
+  wallet: Wallet01,
+  whatsapp: MessageCircle02,
+} as const;
+
+type IconName = keyof typeof icons;
+interface Props { name: IconName; size?: number; }
+
+const { name, size = 20 } = Astro.props;
+const UntitledIcon = icons[name];
+---
+
+<UntitledIcon size={size} aria-hidden="true" focusable="false" />

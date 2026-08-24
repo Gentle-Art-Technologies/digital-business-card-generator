@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Logo from '../components/Logo.astro';
+import Icon from '../components/Icon.astro';
+import CardPreview from '../components/CardPreview.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout title="Demo card · Alianza" description="Demo digital business card for an Alianza professional.">
+  <main class="public-card-page">
+    <header><Logo /><button type="button" data-public-share><Icon name="share" size={18} /> Share</button></header>
+    <div class="public-card-wrap"><CardPreview publicView /></div>
+    <p class="public-card-note">©<span data-current-year>{currentYear}</span> Alianza Sócios de Salud.</p>
+  </main>
+  <div class="toast" role="status" aria-live="polite" data-toast>Link copied</div>
+  <script>
+    import { socialProfileUrl, withFixedBrand, type CardState, type SocialPlatform } from '../config/card';
+
+    const storageKey='alianza-digital-card';const preview=document.querySelector('[data-card-preview]');let state:CardState=withFixedBrand();
+    function decodePayload(value:string){const base64=value.replace(/-/g,'+').replace(/_/g,'/');const binary=atob(base64);const bytes=Uint8Array.from(binary,(char)=>char.charCodeAt(0));return JSON.parse(new TextDecoder().decode(bytes));}
+    const encoded=new URLSearchParams(location.search).get('data');try{state=withFixedBrand(encoded?decodePayload(encoded):JSON.parse(localStorage.getItem(storageKey)||'{}'))}catch{}
+    const setText=(selector:string,value:string)=>{const node=preview?.querySelector(selector);if(node)node.textContent=value};const initials=state.name.trim().split(/\s+/).slice(0,2).map((part:string)=>part[0]?.toUpperCase()).join('');[['[data-preview-name]',state.name],['[data-preview-title]',state.title],['[data-preview-company]',state.company],['[data-preview-headline]',state.headline],['[data-preview-email]',state.email],['[data-preview-phone]',state.phone],['[data-preview-website]',state.website],['[data-preview-location]',state.location],['[data-preview-initials]',initials]].forEach(([s,v])=>setText(s,v));if(preview instanceof HTMLElement)preview.style.setProperty('--card-accent',state.color);
+    const avatarImage=preview?.querySelector('[data-preview-avatar] img');if(avatarImage instanceof HTMLImageElement){avatarImage.src=state.profileImage;avatarImage.hidden=!state.profileImage}const cover=preview?.querySelector('[data-preview-cover]');if(cover instanceof HTMLElement&&state.coverImage)cover.style.backgroundImage=`linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.08)),url(${state.coverImage})`;
+    const mail=`mailto:${state.email}`,phone=`tel:${state.phone}`,website=state.website.startsWith('http')?state.website:`https://${state.website}`;preview?.querySelectorAll('[data-action-email],[data-detail-email]').forEach((n)=>n.setAttribute('href',mail));preview?.querySelectorAll('[data-action-phone],[data-detail-phone]').forEach((n)=>n.setAttribute('href',phone));preview?.querySelectorAll('[data-action-site],[data-detail-site]').forEach((n)=>n.setAttribute('href',website));const socialLinks:Array<[string,SocialPlatform,string]>=[['[data-social-linkedin]','linkedin',state.linkedin],['[data-social-instagram]','instagram',state.instagram],['[data-social-facebook]','facebook',state.facebook],['[data-social-whatsapp]','whatsapp',state.whatsapp]];socialLinks.forEach(([s,platform,value])=>{const href=socialProfileUrl(platform,value);preview?.querySelectorAll(s).forEach((n)=>{n.setAttribute('href',href||'#');n.toggleAttribute('hidden',!href)})});document.querySelector('[data-current-year]')!.textContent=String(new Date().getFullYear());
+    async function share(){const data={title:`${state.name} · Alianza`,url:location.href};if(navigator.share)await navigator.share(data);else{await navigator.clipboard?.writeText(location.href);const toast=document.querySelector('[data-toast]');toast?.classList.add('visible');setTimeout(()=>toast?.classList.remove('visible'),1800)}}document.querySelector('[data-public-share]')?.addEventListener('click',share);preview?.querySelector('[data-share-card]')?.addEventListener('click',share);preview?.querySelector('[data-save-card-contact]')?.addEventListener('click',()=>{const blob=new Blob([`BEGIN:VCARD\nVERSION:3.0\nFN:${state.name}\nORG:${state.company}\nTITLE:${state.title}\nEMAIL:${state.email}\nTEL:${state.phone}\nURL:${website}\nEND:VCARD`],{type:'text/vcard'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${state.name.replace(/\s+/g,'-').toLowerCase()}.vcf`;a.click();URL.revokeObjectURL(a.href)});
+  </script>
+</Layout>
