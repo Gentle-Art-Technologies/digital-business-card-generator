@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Logo from '../components/Logo.astro';
+import Icon from '../components/Icon.astro';
+import CardPreview from '../components/CardPreview.astro';
+
+const palette = ['#000000', '#30374f', '#53646e', '#7b8790', '#315d54', '#7b503b'];
+const detailFields = [
+  ['name', 'user', 'Name', 'Maya Torres'],
+  ['title', 'briefcase', 'Job title', 'Community Partnerships'],
+  ['headline', 'edit', 'Headline', 'Building healthier partnerships across communities.'],
+  ['email', 'mail', 'Email', 'maya@alianza.health'],
+  ['phone', 'phone', 'Phone', '+1 (787) 555-0146'],
+  ['location', 'location', 'Location', 'San Juan, Puerto Rico'],
+] as const;
+---
+
+<Layout title="Create digital card · Alianza" description="Create and customize your Alianza digital business card.">
+  <div class="app-shell">
+    <header class="app-header">
+      <Logo />
+      <div class="save-state" data-save-state><span></span> Draft saved locally</div>
+      <div class="app-actions">
+        <a class="app-button app-button-secondary desktop-preview" href="/card" target="_blank"><Icon name="eye" size={18} /> Preview</a>
+        <button class="app-button app-button-secondary mobile-preview-button" type="button" data-mobile-preview><Icon name="eye" size={18} /> <span>Preview</span></button>
+        <button class="app-button app-button-primary" type="button" data-publish><Icon name="share" size={18} /> Save & share</button>
+      </div>
+    </header>
+
+    <main class="builder-shell">
+      <aside class="preview-pane" aria-label="Live card preview">
+        <div class="preview-heading"><div><span class="live-dot"></span><strong>Live preview</strong></div><p>Changes appear instantly</p></div>
+        <div class="preview-stage"><CardPreview /></div>
+        <div class="preview-footer"><span>Mobile view</span><span>390 × 844</span></div>
+      </aside>
+
+      <section class="editor-pane" aria-labelledby="editor-title">
+        <div class="editor-intro">
+          <p class="step-count">01 / 02</p>
+          <h1 id="editor-title">Create your card</h1>
+          <p>Shape what people see when they open your Alianza profile.</p>
+        </div>
+
+        <form class="card-editor" data-card-editor>
+          <section class="editor-section" aria-labelledby="visuals-title">
+            <div class="section-heading"><div><span><Icon name="image" size={20} /></span><div><h2 id="visuals-title">Card visuals</h2><p>Add recognizable details and choose an accent.</p></div></div></div>
+            <div class="upload-grid">
+              <label class="upload-tile"><input type="file" accept="image/*" data-image-upload="profile" /><span><Icon name="user" size={22} /></span><strong>Profile photo</strong><small>Square works best</small></label>
+              <label class="upload-tile"><input type="file" accept="image/*" data-image-upload="cover" /><span><Icon name="image" size={22} /></span><strong>Cover image</strong><small>Landscape image</small></label>
+            </div>
+            <fieldset class="color-fieldset">
+              <legend>Profile accent</legend>
+              <div class="color-options">
+                {palette.map((color, index) => <button class:list={["color-swatch", { selected: index === 2 }]} style={`--swatch:${color}`} type="button" data-color={color} aria-label={`Use ${color}`} aria-pressed={index === 2}><span></span></button>)}
+                <label class="custom-color" aria-label="Choose a custom color"><Icon name="palette" size={18} /><input type="color" value="#53646e" data-custom-color /></label>
+              </div>
+            </fieldset>
+          </section>
+
+          <section class="editor-section" aria-labelledby="details-title">
+            <div class="section-heading">
+              <div><span><Icon name="edit" size={20} /></span><div><h2 id="details-title">Your details</h2><p>Use information you want contacts to save.</p></div></div>
+              <div class="section-heading-actions"><span class="required-note">* Required</span><button class="section-clear" type="button" data-clear-details>Clear</button></div>
+            </div>
+            <div class="fields-grid">
+              {detailFields.map(([id, icon, label, value], index) => (
+                <label class:list={["field", { "field-wide": id === 'headline' || id === 'location' }]}>
+                  <span class="field-icon"><Icon name={icon} size={18} /></span>
+                  <span class="field-copy"><span>{label}{(index < 2 || id === 'email') && <b aria-hidden="true"> *</b>}</span><input type={id === 'email' ? 'email' : id === 'phone' ? 'tel' : 'text'} name={id} value={value} maxlength={id === 'name' ? 48 : id === 'headline' ? 120 : id === 'phone' ? 30 : 80} placeholder={id === 'email' ? 'name@alianza.health' : undefined} autocomplete={id === 'email' ? 'email' : id === 'phone' ? 'tel' : 'off'} required={index < 2 || id === 'email'} data-alianza-email={id === 'email' ? true : undefined} data-card-field={id} /></span>
+                </label>
+              ))}
+            </div>
+          </section>
+
+          <section class="editor-section" aria-labelledby="social-title">
+            <div class="section-heading"><div><span><Icon name="link" size={20} /></span><div><h2 id="social-title">Social links</h2><p>Enter usernames only. WhatsApp uses a full international phone number.</p></div></div></div>
+            <div class="fields-grid">
+              <label class="field"><span class="field-icon"><Icon name="linkedin" size={18} /></span><span class="field-copy"><span>LinkedIn username</span><input type="text" name="linkedin" maxlength="100" pattern="[A-Za-z0-9._-]+" title="Enter only your LinkedIn username" placeholder="maya-torres" autocomplete="off" spellcheck="false" data-social-platform="linkedin" data-card-field="linkedin" /></span></label>
+              <label class="field"><span class="field-icon"><Icon name="instagram" size={18} /></span><span class="field-copy"><span>Instagram username</span><input type="text" name="instagram" maxlength="100" pattern="[A-Za-z0-9._-]+" title="Enter only your Instagram username" placeholder="maya.torres" autocomplete="off" spellcheck="false" data-social-platform="instagram" data-card-field="instagram" /></span></label>
+              <label class="field"><span class="field-icon"><Icon name="facebook" size={18} /></span><span class="field-copy"><span>Facebook username</span><input type="text" name="facebook" maxlength="100" pattern="[A-Za-z0-9._-]+" title="Enter only your Facebook username" placeholder="maya.torres" autocomplete="off" spellcheck="false" data-social-platform="facebook" data-card-field="facebook" /></span></label>
+              <label class="field"><span class="field-icon"><Icon name="whatsapp" size={18} /></span><span class="field-copy"><span>WhatsApp number</span><input type="tel" name="whatsapp" maxlength="24" placeholder="+1 787 555 0146" autocomplete="tel" inputmode="tel" data-whatsapp-number data-social-platform="whatsapp" data-card-field="whatsapp" /></span></label>
+            </div>
+          </section>
+
+          <div class="form-finish">
+            <div><Icon name="check" size={18} /><p><strong>Your card is private until you share it.</strong><span>Saved to this browser for this prototype.</span></p></div>
+            <button class="app-button app-button-primary app-button-large" type="submit">Save card <Icon name="arrow" size={18} /></button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <div class="share-sheet" data-share-sheet hidden>
+    <button class="sheet-backdrop" type="button" data-close-sheet tabindex="-1" aria-hidden="true" aria-label="Close share dialog"></button>
+    <section role="dialog" aria-modal="true" aria-labelledby="share-title">
+      <button class="sheet-close" type="button" data-close-sheet aria-label="Close"><span></span></button>
+      <span class="success-mark"><Icon name="check" size={28} /></span>
+      <h2 id="share-title">Your card is ready</h2><p>Card details and color travel with the share link. Uploaded images remain on this device.</p>
+      <div class="share-url"><span data-share-url>http://localhost:4321/card</span><button type="button" data-copy-link>Copy</button></div>
+      <a class="app-button app-button-primary app-button-large" href="/card" target="_blank" data-public-card-link>Open public card <Icon name="external" size={18} /></a>
+    </section>
+  </div>
+  <div class="toast" role="status" aria-live="polite" data-toast>Card saved</div>
+
+  <script>
+    import { isAlianzaEmail, isValidWhatsAppNumber, normalizeSocialValue, socialProfileUrl, withFixedBrand, type CardState, type SocialPlatform } from '../config/card';
+
+    const storageKey = 'alianza-digital-card';
+    const editor = document.querySelector('[data-card-editor]');
+    const preview = document.querySelector('[data-card-preview]');
+    const toast = document.querySelector('[data-toast]');
+    const saveState = document.querySelector('[data-save-state]');
+    const shareSheet = document.querySelector('[data-share-sheet]');
+    const previewPane = document.querySelector('.preview-pane');
+    let previousFocus: HTMLElement | null = null;
+    let editorScrollY = 0;
+    let state: CardState = withFixedBrand();
+    try { state = withFixedBrand(JSON.parse(localStorage.getItem(storageKey) || '{}')); } catch {}
+    const markDirty = () => { if (saveState) saveState.innerHTML = '<span></span> Unsaved changes'; };
+    function initials(name: string) { return name.trim().split(/\s+/).slice(0,2).map((part: string) => part[0]?.toUpperCase() || '').join('') || 'A'; }
+    function safeWebsite(value: string) { return value.startsWith('http') ? value : `https://${value}`; }
+    function render() {
+      if (!preview) return;
+      const setText = (selector: string, value: string) => { const node = preview.querySelector(selector); if (node) node.textContent = value; };
+      setText('[data-preview-name]',state.name||'Your name'); setText('[data-preview-title]',state.title||'Your role'); setText('[data-preview-company]',state.company||'Alianza Sócios de Salud'); setText('[data-preview-headline]',state.headline||'Add a short professional headline.'); setText('[data-preview-email]',state.email||'Add email'); setText('[data-preview-phone]',state.phone||'Add phone'); setText('[data-preview-website]',state.website||'Add website'); setText('[data-preview-location]',state.location||'Add location'); setText('[data-preview-initials]',initials(state.name));
+      if (preview instanceof HTMLElement) preview.style.setProperty('--card-accent',state.color);
+      [['[data-action-email], [data-detail-email]',`mailto:${state.email}`],['[data-action-phone], [data-detail-phone]',`tel:${state.phone}`],['[data-action-site], [data-detail-site]',safeWebsite(state.website||'alianza.health')]].forEach(([selector,href]) => preview.querySelectorAll(selector).forEach((node) => node.setAttribute('href',href)));
+      const avatarImage=preview.querySelector('[data-preview-avatar] img'); if(avatarImage instanceof HTMLImageElement){avatarImage.src=state.profileImage;avatarImage.hidden=!state.profileImage;}
+      const cover=preview.querySelector('[data-preview-cover]'); if(cover instanceof HTMLElement)cover.style.backgroundImage=state.coverImage?`linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.08)),url(${state.coverImage})`:'';
+      const socialLinks: Array<[string, SocialPlatform, string]> = [['[data-social-linkedin]','linkedin',state.linkedin],['[data-social-instagram]','instagram',state.instagram],['[data-social-facebook]','facebook',state.facebook],['[data-social-whatsapp]','whatsapp',state.whatsapp]];
+      socialLinks.forEach(([selector,platform,value]) => { const href=socialProfileUrl(platform,value); preview.querySelectorAll(selector).forEach((node)=>{node.setAttribute('href',href||'#');node.toggleAttribute('hidden',!href);}); });
+    }
+    editor?.querySelectorAll('[data-card-field]').forEach((input)=>{const key=input.getAttribute('data-card-field');if(input instanceof HTMLInputElement&&key){input.value=state[key]||'';input.addEventListener('input',()=>{state[key]=input.value;render();markDirty();});const platform=input.getAttribute('data-social-platform') as SocialPlatform|null;if(platform)input.addEventListener('blur',()=>{const normalized=normalizeSocialValue(platform,input.value);input.value=normalized;state[key]=normalized;render();});}});
+    const emailInput=editor?.querySelector<HTMLInputElement>('[data-alianza-email]');
+    const whatsappInput=editor?.querySelector<HTMLInputElement>('[data-whatsapp-number]');
+    function setFieldValidity(input:HTMLInputElement|undefined|null,message:string,valid:boolean,showError=false){input?.setCustomValidity(valid?'':message);input?.closest('.field')?.classList.toggle('field-invalid',showError&&!valid);}
+    function validateEmail(showError=false){if(!emailInput)return true;const valid=!emailInput.value.trim()||isAlianzaEmail(emailInput.value);setFieldValidity(emailInput,'Use your @alianza.health email address.',valid,showError);return valid;}
+    function validateWhatsApp(showError=false){if(!whatsappInput)return true;const valid=isValidWhatsAppNumber(whatsappInput.value);setFieldValidity(whatsappInput,'Use a full international number with country code, such as +1 787 555 0146.',valid,showError);return valid;}
+    emailInput?.addEventListener('input',()=>validateEmail(false));emailInput?.addEventListener('blur',()=>validateEmail(true));emailInput?.addEventListener('invalid',()=>validateEmail(true));
+    whatsappInput?.addEventListener('input',()=>validateWhatsApp(false));whatsappInput?.addEventListener('blur',()=>validateWhatsApp(true));whatsappInput?.addEventListener('invalid',()=>validateWhatsApp(true));
+    document.querySelector('[data-clear-details]')?.addEventListener('click',()=>{editor?.querySelectorAll<HTMLInputElement>('[data-card-field="name"],[data-card-field="title"],[data-card-field="headline"],[data-card-field="email"],[data-card-field="phone"],[data-card-field="location"]').forEach((input)=>{const key=input.getAttribute('data-card-field');input.value='';if(key)state[key]='';input.closest('.field')?.classList.remove('field-invalid');});validateEmail(false);render();markDirty();editor?.querySelector<HTMLInputElement>('[data-card-field="name"]')?.focus();});
+    document.querySelectorAll('[data-color]').forEach((button)=>{const selected=button.getAttribute('data-color')===state.color;button.classList.toggle('selected',selected);button.setAttribute('aria-pressed',String(selected));button.addEventListener('click',()=>{const color=button.getAttribute('data-color');if(!color)return;state.color=color;document.querySelectorAll('[data-color]').forEach((item)=>{item.classList.toggle('selected',item===button);item.setAttribute('aria-pressed',String(item===button));});render();markDirty();});});
+    const customColor=document.querySelector('[data-custom-color]');if(customColor instanceof HTMLInputElement)customColor.value=state.color;
+    customColor?.addEventListener('input',(event)=>{if(event.target instanceof HTMLInputElement){state.color=event.target.value;document.querySelectorAll('[data-color]').forEach((item)=>{item.classList.remove('selected');item.setAttribute('aria-pressed','false');});render();markDirty();}});
+    document.querySelectorAll('[data-image-upload]').forEach((input)=>input.addEventListener('change',()=>{if(!(input instanceof HTMLInputElement)||!input.files?.[0])return;const kind=input.getAttribute('data-image-upload');const reader=new FileReader();reader.addEventListener('load',()=>{if(typeof reader.result==='string'&&kind){state[`${kind}Image`]=reader.result;render();markDirty();}});reader.readAsDataURL(input.files[0]);}));
+    function encodePayload(payload: CardState){const bytes=new TextEncoder().encode(JSON.stringify(payload));let binary='';bytes.forEach((byte)=>binary+=String.fromCharCode(byte));return btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');}
+    function shareLink(){const shareable=withFixedBrand({...state,profileImage:'',coverImage:''});return `${location.origin}/card?data=${encodePayload(shareable)}`;}
+    function openSheet(){if(!(shareSheet instanceof HTMLElement))return;previousFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;shareSheet.hidden=false;document.body.classList.add('sheet-open');const link=shareLink();const shareUrl=document.querySelector('[data-share-url]');if(shareUrl)shareUrl.textContent=link;const publicCardLink=document.querySelector('[data-public-card-link]');if(publicCardLink instanceof HTMLAnchorElement)publicCardLink.href=link;requestAnimationFrame(()=>shareSheet.querySelector<HTMLElement>('.sheet-close')?.focus());}
+    function closeSheet(){if(shareSheet instanceof HTMLElement)shareSheet.hidden=true;document.body.classList.remove('sheet-open');previousFocus?.focus();}
+    function save(showSheet=false){localStorage.setItem(storageKey,JSON.stringify(state));if(saveState)saveState.innerHTML='<span></span> Draft saved locally';toast?.classList.add('visible');window.setTimeout(()=>toast?.classList.remove('visible'),1800);if(showSheet)openSheet();}
+    function saveIfValid(showSheet=true){validateEmail(true);validateWhatsApp(true);if(editor instanceof HTMLFormElement&&editor.reportValidity())save(showSheet);}
+    editor?.addEventListener('submit',(event)=>{event.preventDefault();saveIfValid(true);});
+    document.querySelector('[data-publish]')?.addEventListener('click',()=>saveIfValid(true));
+    preview?.querySelector('[data-share-card]')?.addEventListener('click',()=>saveIfValid(true));
+    preview?.querySelector('[data-save-card-contact]')?.addEventListener('click',()=>saveIfValid(true));
+    document.querySelectorAll('[data-close-sheet]').forEach((button)=>button.addEventListener('click',closeSheet));
+    document.addEventListener('keydown',(event)=>{if(!(shareSheet instanceof HTMLElement)||shareSheet.hidden)return;if(event.key==='Escape'){event.preventDefault();closeSheet();return;}if(event.key==='Tab'){const focusable=[...shareSheet.querySelectorAll<HTMLElement>('button,a[href]')].filter((item)=>!item.hasAttribute('disabled')&&item.tabIndex>=0);const first=focusable[0],last=focusable.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}}});
+    document.querySelector('[data-copy-link]')?.addEventListener('click',async(event)=>{await navigator.clipboard?.writeText(shareLink());if(event.target instanceof HTMLButtonElement)event.target.textContent='Copied';});
+    document.querySelector('[data-mobile-preview]')?.addEventListener('click',(event)=>{const wasVisible=previewPane?.classList.contains('mobile-visible')||false;if(!wasVisible)editorScrollY=window.scrollY;const visible=previewPane?.classList.toggle('mobile-visible')||false;const label=(event.currentTarget as HTMLElement).querySelector('span');if(label)label.textContent=visible?'Edit':'Preview';if(visible)previewPane?.scrollIntoView({behavior:'smooth',block:'start'});else requestAnimationFrame(()=>window.scrollTo({top:editorScrollY,behavior:'auto'}));});
+    validateEmail(false);validateWhatsApp(false);render();
+  </script>
+</Layout>

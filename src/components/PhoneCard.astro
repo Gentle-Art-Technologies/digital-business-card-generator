@@ -1,0 +1,30 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div class="phone-shell" aria-label="Demo digital business card for Maya Torres">
+  <div class="phone-camera"></div>
+  <div class="card-screen">
+    <div class="cover-art" aria-hidden="true">
+      <span class="orb orb-one"></span>
+      <span class="orb orb-two"></span>
+      <span class="cover-word">A</span>
+    </div>
+    <div class="profile-mark" aria-hidden="true">MT</div>
+    <div class="profile-copy">
+      <p class="eyebrow">DEMO PROFILE</p>
+      <h3>Maya Torres</h3>
+      <p>Community Partnerships</p>
+      <p>Alianza Sócios de Salud</p>
+    </div>
+    <div class="contact-row" aria-hidden="true">
+      <span><Icon name="mail" size={18} /></span>
+      <span><Icon name="calendar" size={18} /></span>
+      <span><Icon name="link" size={18} /></span>
+    </div>
+    <button class="save-contact" type="button" data-save-contact>
+      <Icon name="phone" size={18} />
+      <span>Save contact</span>
+    </button>
+  </div>
+</div>
