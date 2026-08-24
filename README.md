@@ -22,7 +22,7 @@ npm run build
 
 The `alianza-card` Pages project is connected to
 `Gentle-Art-Technologies/alianza-card`. Commits to `main` build with
-`npm run build` and publish `dist/` to `https://alianza-card.pages.dev`.
+`npm run build` and publish `dist/`.
 
 Wrangler is pinned in the project for Cloudflare-compatible local previews and
 manual recovery deployments:
