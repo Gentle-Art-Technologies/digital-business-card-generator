@@ -1,5 +1,5 @@
 export const fixedCardBrand = {
-  company: 'Sanavida',
+  company: 'Sanavia Sócios de Salud',
   website: 'sanavida.health',
   websiteUrl: 'https://sanavida.health',
 } as const;

@@ -34,7 +34,7 @@ The product turns Sanavida's trusted professional identity into an always-curren
 
 ## Brand Commitments
 
-- Canonical name: Sanavida.
+- Canonical name: Sanavia Sócios de Salud.
 - Official Sanavida lockup and nest-mark assets are mandatory on app and card surfaces.
 - The visual system must follow `/Users/ed/Developer/WORK/GAT/sanavida-video/DESIGN.md`.
 - Voice must be concise, confident, and implementation-focused.
