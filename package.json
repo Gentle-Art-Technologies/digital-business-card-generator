@@ -1,5 +1,5 @@
 {
-  "name": "alianza-digital-card",
+  "name": "sanavida-digital-card",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -12,7 +12,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "pages:dev": "npm run build && wrangler pages dev dist",
-    "pages:deploy": "npm run build && wrangler pages deploy dist --project-name=alianza-card --branch=main"
+    "pages:deploy": "npm run build && wrangler pages deploy dist --project-name=sanavida-card --branch=main"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

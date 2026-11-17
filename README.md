@@ -1,6 +1,6 @@
 # Digital business card generator
 
-Alianza team digital business cards (alianza.health)
+Sanavida team digital business cards (sanavida.health)
 
 ## Development
 

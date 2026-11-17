@@ -1,6 +1,6 @@
 ---
-name: "Alianza Digital Card"
-description: "A calm, trustworthy system for creating and sharing an Alianza professional identity."
+name: "Sanavida Digital Card"
+description: "A calm, trustworthy system for creating and sharing an Sanavida professional identity."
 colors:
   ink: "#000000"
   navy: "#30374f"
@@ -115,13 +115,13 @@ components:
     width: "min(100%, 480px)"
 ---
 
-# Design System: Alianza Digital Card
+# Design System: Sanavida Digital Card
 
 ## Overview
 
 **Creative North Star: "The Calm Digital Handshake"**
 
-The Alianza Digital Card turns a trusted professional introduction into a quiet, tangible credential. Its visual world is clean, functional, and implementation-focused: warm-white work surfaces, cool clinical grays, deep ink actions, and a restrained personal accent make the interface feel dependable before it feels expressive.
+The Sanavida Digital Card turns a trusted professional introduction into a quiet, tangible credential. Its visual world is clean, functional, and implementation-focused: warm-white work surfaces, cool clinical grays, deep ink actions, and a restrained personal accent make the interface feel dependable before it feels expressive.
 
 The builder separates making from seeing. A stable live card occupies one side on wide screens while a spacious, linear editor occupies the other; on small screens the editor leads and the preview becomes an explicit mode. Brand personality comes through disciplined typography, useful circular details, and a phone-like card frame rather than decorative spectacle.
 
@@ -131,12 +131,12 @@ The builder separates making from seeing. A stable live card occupies one side o
 - Flat by default, with depth reserved for objects that genuinely float.
 - Dense in information but generous around decisions and touch targets.
 - Personal accent color is contained inside the digital card experience.
-- The official Alianza lateral lockup anchors app headers; the fixed yellow nest mark anchors the card badge.
+- The official Sanavida lateral lockup anchors app headers; the fixed yellow nest mark anchors the card badge.
 - Concise, confident interface language with honest prototype labeling.
 
 ## Colors
 
-The palette pairs authoritative black and blue-gray with pale, clinical surfaces; optional earth and health tones let the card feel personal without diluting the Alianza identity.
+The palette pairs authoritative black and blue-gray with pale, clinical surfaces; optional earth and health tones let the card feel personal without diluting the Sanavida identity.
 
 ### Primary
 
@@ -252,21 +252,21 @@ Borders are thin and low-contrast. Upload targets use a dashed boundary, fields 
 - **Style:** Warm-paper fill, soft navy one-pixel border, 9px corners, 66px minimum height, and a left icon paired with an uppercase micro-label.
 - **Focus:** The border strengthens to deep navy and a translucent three-pixel navy halo appears around the field.
 - **Error / Disabled:** Required markers use validation red. Native validation must remain available; disabled styling must preserve readable contrast and must not resemble an editable field.
-- **Profile identity:** Email is required and must end in `@alianza.health`. Social fields accept usernames rather than full URLs; WhatsApp is the exception and accepts a full international phone number with country code.
+- **Profile identity:** Email is required and must end in `@sanavida.health`. Social fields accept usernames rather than full URLs; WhatsApp is the exception and accepts a full international phone number with country code.
 
 ### Navigation
 
-- **Style:** A 76px sticky paper header keeps the Alianza mark at the leading edge, save state centered on wide screens, and preview/share actions at the trailing edge. At 900px and below, save state hides and Preview becomes an explicit toggle; at 600px, spacing tightens and the primary action drops its decorative icon.
+- **Style:** A 76px sticky paper header keeps the Sanavida mark at the leading edge, save state centered on wide screens, and preview/share actions at the trailing edge. At 900px and below, save state hides and Preview becomes an explicit toggle; at 600px, spacing tightens and the primary action drops its decorative icon.
 
 ### Upload Tiles
 
-Upload tiles are clear-white, 10px-radius targets with a dashed soft navy border and a quiet circular icon ground. Profile and cover uploads form two equal columns on wide screens and become compact horizontal rows on small screens. Hover and focus strengthen the border and add a mist surface or focus halo. The company mark is never an upload: it is the fixed Alianza nest logo.
+Upload tiles are clear-white, 10px-radius targets with a dashed soft navy border and a quiet circular icon ground. Profile and cover uploads form two equal columns on wide screens and become compact horizontal rows on small screens. Hover and focus strengthen the border and add a mist surface or focus halo. The company mark is never an upload: it is the fixed Sanavida nest logo.
 
 Product icons come exclusively from the free outline set in `@untitledui/icons`, rendered at the component's intended size with the library's consistent 2px stroke. Use direct subpath imports so the build includes only the icons the interface needs. When a brand-specific glyph is unavailable in the free set, use the closest neutral Untitled UI action icon and let the adjacent label carry the brand meaning; do not author a replacement SVG.
 
 ### Digital Card
 
-The card combines a profile-accent cover, circular overlapping avatar, fixed Alianza nest badge, clear-white body, round quick actions, icon-led detail rows, and a persistent dark contact action. Uploaded imagery may replace the cover and avatar while the accent remains the fallback identity system. The company name and website stay fixed across every profile. Public presentation removes the device chrome and enlarges type and targets without changing the card's hierarchy.
+The card combines a profile-accent cover, circular overlapping avatar, fixed Sanavida nest badge, clear-white body, round quick actions, icon-led detail rows, and a persistent dark contact action. Uploaded imagery may replace the cover and avatar while the accent remains the fallback identity system. The company name and website stay fixed across every profile. Public presentation removes the device chrome and enlarges type and targets without changing the card's hierarchy.
 
 ### Share Dialog
 
