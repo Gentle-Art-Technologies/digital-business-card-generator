@@ -9,13 +9,13 @@ const detailFields = [
   ['name', 'user', 'Name', 'Maya Torres'],
   ['title', 'briefcase', 'Job title', 'Community Partnerships'],
   ['headline', 'edit', 'Headline', 'Building healthier partnerships across communities.'],
-  ['email', 'mail', 'Email', 'maya@alianza.health'],
+  ['email', 'mail', 'Email', 'maya@sanavida.health'],
   ['phone', 'phone', 'Phone', '+1 (787) 555-0146'],
   ['location', 'location', 'Location', 'San Juan, Puerto Rico'],
 ] as const;
 ---
 
-<Layout title="Create digital card · Alianza" description="Create and customize your Alianza digital business card.">
+<Layout title="Create digital card · Sanavida" description="Create and customize your Sanavida digital business card.">
   <div class="app-shell">
     <header class="app-header">
       <Logo />
@@ -38,7 +38,7 @@ const detailFields = [
         <div class="editor-intro">
           <p class="step-count">01 / 02</p>
           <h1 id="editor-title">Create your card</h1>
-          <p>Shape what people see when they open your Alianza profile.</p>
+          <p>Shape what people see when they open your Sanavida profile.</p>
         </div>
 
         <form class="card-editor" data-card-editor>
@@ -66,7 +66,7 @@ const detailFields = [
               {detailFields.map(([id, icon, label, value], index) => (
                 <label class:list={["field", { "field-wide": id === 'headline' || id === 'location' }]}>
                   <span class="field-icon"><Icon name={icon} size={18} /></span>
-                  <span class="field-copy"><span>{label}{(index < 2 || id === 'email') && <b aria-hidden="true"> *</b>}</span><input type={id === 'email' ? 'email' : id === 'phone' ? 'tel' : 'text'} name={id} value={value} maxlength={id === 'name' ? 48 : id === 'headline' ? 120 : id === 'phone' ? 30 : 80} placeholder={id === 'email' ? 'name@alianza.health' : undefined} autocomplete={id === 'email' ? 'email' : id === 'phone' ? 'tel' : 'off'} required={index < 2 || id === 'email'} data-alianza-email={id === 'email' ? true : undefined} data-card-field={id} /></span>
+                  <span class="field-copy"><span>{label}{(index < 2 || id === 'email') && <b aria-hidden="true"> *</b>}</span><input type={id === 'email' ? 'email' : id === 'phone' ? 'tel' : 'text'} name={id} value={value} maxlength={id === 'name' ? 48 : id === 'headline' ? 120 : id === 'phone' ? 30 : 80} placeholder={id === 'email' ? 'name@sanavida.health' : undefined} autocomplete={id === 'email' ? 'email' : id === 'phone' ? 'tel' : 'off'} required={index < 2 || id === 'email'} data-sanavida-email={id === 'email' ? true : undefined} data-card-field={id} /></span>
                 </label>
               ))}
             </div>
@@ -104,9 +104,9 @@ const detailFields = [
   <div class="toast" role="status" aria-live="polite" data-toast>Card saved</div>
 
   <script>
-    import { cardShareUrl, isAlianzaEmail, isValidWhatsAppNumber, normalizeSocialValue, socialProfileUrl, withFixedBrand, type CardState, type SocialPlatform } from '../config/card';
+    import { cardShareUrl, isSanavidaEmail, isValidWhatsAppNumber, normalizeSocialValue, socialProfileUrl, withFixedBrand, type CardState, type SocialPlatform } from '../config/card';
 
-    const storageKey = 'alianza-digital-card';
+    const storageKey = 'sanavida-digital-card';
     const editor = document.querySelector('[data-card-editor]');
     const preview = document.querySelector('[data-card-preview]');
     const toast = document.querySelector('[data-toast]');
@@ -123,9 +123,9 @@ const detailFields = [
     function render() {
       if (!preview) return;
       const setText = (selector: string, value: string) => { const node = preview.querySelector(selector); if (node) node.textContent = value; };
-      setText('[data-preview-name]',state.name||'Your name'); setText('[data-preview-title]',state.title||'Your role'); setText('[data-preview-company]',state.company||'Alianza Sócios de Salud'); setText('[data-preview-headline]',state.headline||'Add a short professional headline.'); setText('[data-preview-email]',state.email||'Add email'); setText('[data-preview-phone]',state.phone||'Add phone'); setText('[data-preview-website]',state.website||'Add website'); setText('[data-preview-location]',state.location||'Add location'); setText('[data-preview-initials]',initials(state.name));
+      setText('[data-preview-name]',state.name||'Your name'); setText('[data-preview-title]',state.title||'Your role'); setText('[data-preview-company]',state.company||'Sanavida'); setText('[data-preview-headline]',state.headline||'Add a short professional headline.'); setText('[data-preview-email]',state.email||'Add email'); setText('[data-preview-phone]',state.phone||'Add phone'); setText('[data-preview-website]',state.website||'Add website'); setText('[data-preview-location]',state.location||'Add location'); setText('[data-preview-initials]',initials(state.name));
       if (preview instanceof HTMLElement) preview.style.setProperty('--card-accent',state.color);
-      [['[data-action-email], [data-detail-email]',`mailto:${state.email}`],['[data-action-phone], [data-detail-phone]',`tel:${state.phone}`],['[data-action-site], [data-detail-site]',safeWebsite(state.website||'alianza.health')]].forEach(([selector,href]) => preview.querySelectorAll(selector).forEach((node) => node.setAttribute('href',href)));
+      [['[data-action-email], [data-detail-email]',`mailto:${state.email}`],['[data-action-phone], [data-detail-phone]',`tel:${state.phone}`],['[data-action-site], [data-detail-site]',safeWebsite(state.website||'sanavida.health')]].forEach(([selector,href]) => preview.querySelectorAll(selector).forEach((node) => node.setAttribute('href',href)));
       const avatarImage=preview.querySelector('[data-preview-avatar] img'); if(avatarImage instanceof HTMLImageElement){avatarImage.src=state.profileImage;avatarImage.hidden=!state.profileImage;}
       const cover=preview.querySelector('[data-preview-cover]'); if(cover instanceof HTMLElement)cover.style.backgroundImage=state.coverImage?`linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.08)),url(${state.coverImage})`:'';
       const socialLinks: Array<[string, SocialPlatform, string]> = [['[data-social-linkedin]','linkedin',state.linkedin],['[data-social-instagram]','instagram',state.instagram],['[data-social-facebook]','facebook',state.facebook],['[data-social-whatsapp]','whatsapp',state.whatsapp]];
@@ -133,10 +133,10 @@ const detailFields = [
       syncPublicLinks();
     }
     editor?.querySelectorAll('[data-card-field]').forEach((input)=>{const key=input.getAttribute('data-card-field');if(input instanceof HTMLInputElement&&key){input.value=state[key]||'';input.addEventListener('input',()=>{state[key]=input.value;render();markDirty();});const platform=input.getAttribute('data-social-platform') as SocialPlatform|null;if(platform)input.addEventListener('blur',()=>{const normalized=normalizeSocialValue(platform,input.value);input.value=normalized;state[key]=normalized;render();});}});
-    const emailInput=editor?.querySelector<HTMLInputElement>('[data-alianza-email]');
+    const emailInput=editor?.querySelector<HTMLInputElement>('[data-sanavida-email]');
     const whatsappInput=editor?.querySelector<HTMLInputElement>('[data-whatsapp-number]');
     function setFieldValidity(input:HTMLInputElement|undefined|null,message:string,valid:boolean,showError=false){input?.setCustomValidity(valid?'':message);input?.closest('.field')?.classList.toggle('field-invalid',showError&&!valid);}
-    function validateEmail(showError=false){if(!emailInput)return true;const valid=!emailInput.value.trim()||isAlianzaEmail(emailInput.value);setFieldValidity(emailInput,'Use your @alianza.health email address.',valid,showError);return valid;}
+    function validateEmail(showError=false){if(!emailInput)return true;const valid=!emailInput.value.trim()||isSanavidaEmail(emailInput.value);setFieldValidity(emailInput,'Use your @sanavida.health email address.',valid,showError);return valid;}
     function validateWhatsApp(showError=false){if(!whatsappInput)return true;const valid=isValidWhatsAppNumber(whatsappInput.value);setFieldValidity(whatsappInput,'Use a full international number with country code, such as +1 787 555 0146.',valid,showError);return valid;}
     emailInput?.addEventListener('input',()=>validateEmail(false));emailInput?.addEventListener('blur',()=>validateEmail(true));emailInput?.addEventListener('invalid',()=>validateEmail(true));
     whatsappInput?.addEventListener('input',()=>validateWhatsApp(false));whatsappInput?.addEventListener('blur',()=>validateWhatsApp(true));whatsappInput?.addEventListener('invalid',()=>validateWhatsApp(true));

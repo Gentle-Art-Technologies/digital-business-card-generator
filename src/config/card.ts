@@ -1,7 +1,7 @@
 export const fixedCardBrand = {
-  company: 'Alianza Sócios de Salud',
-  website: 'alianza.health',
-  websiteUrl: 'https://alianza.health',
+  company: 'Sanavida',
+  website: 'sanavida.health',
+  websiteUrl: 'https://sanavida.health',
 } as const;
 
 export type SocialPlatform = 'linkedin' | 'instagram' | 'facebook' | 'whatsapp';
@@ -12,8 +12,8 @@ const socialHosts: Record<Exclude<SocialPlatform, 'whatsapp'>, string> = {
   facebook: 'https://www.facebook.com/',
 };
 
-export function isAlianzaEmail(value: string): boolean {
-  return /^[^\s@]+@alianza\.health$/i.test(value.trim());
+export function isSanavidaEmail(value: string): boolean {
+  return /^[^\s@]+@sanavida\.health$/i.test(value.trim());
 }
 
 export function normalizeSocialValue(platform: SocialPlatform, value: string): string {
@@ -63,7 +63,7 @@ export const cardDefaults = {
   title: 'Community Partnerships',
   company: fixedCardBrand.company,
   headline: 'Building healthier partnerships across communities.',
-  email: 'maya@alianza.health',
+  email: 'maya@sanavida.health',
   phone: '+1 (787) 555-0146',
   website: fixedCardBrand.website,
   location: 'San Juan, Puerto Rico',
@@ -86,7 +86,7 @@ export function withFixedBrand(value: Partial<CardState> = {}): CardState {
 
   return {
     ...sanitized,
-    email: isAlianzaEmail(sanitized.email) ? sanitized.email.trim() : '',
+    email: isSanavidaEmail(sanitized.email) ? sanitized.email.trim() : '',
     linkedin: normalizeSocialValue('linkedin', sanitized.linkedin),
     instagram: normalizeSocialValue('instagram', sanitized.instagram),
     facebook: normalizeSocialValue('facebook', sanitized.facebook),
